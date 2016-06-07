@@ -18,7 +18,8 @@ for vserver,values  in origcfg.iteritems():
     thiscfg.append(newsg)
     newvs = 'add lb vserver lb_%s-%s ANY %s %s -persistenceType NONE -m MAC -state DISABLED -connfailover STATELESS -cltTimeout 120' %(vserver,port,vip,port)
     thiscfg.append(newvs)
-    lbsgbind = 'bind serviceGroup sg_%s-%s %s %s -state DISABLED' %(vserver,port,vserver,port)
+    
+    lbsgbind = 'bind lb vserver lb_%s-%s sg_%s-%s' %(vserver,port,vserver,port)
     thiscfg.append(lbsgbind)
   for realserver in values['rs']:
     ip= values['rs'][realserver] 
