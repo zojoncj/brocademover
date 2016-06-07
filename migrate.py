@@ -30,6 +30,8 @@ for vserver,values  in origcfg.iteritems():
       for port in binding:
         sgrsbind = 'bind serviceGroup sg_%s-%s %s %s -state DISABLED' %(vserver,port,rs,port)
         thiscfg.append(sgrsbind)
+  disarp = 'set ns ip %s -arpResponse ALL_VSERVERS' %vip
+  thiscfg.append(disarp)
 
   outcfg.append(thiscfg)
 
